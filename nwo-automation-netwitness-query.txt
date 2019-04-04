@@ -1,0 +1,3 @@
+ 
+!netwitness-query size="5" query="SELECT distinct(alias.host) WHERE device.type = 'windows'"
+!netwitness-query size="5" query="SELECT distinct(alias.host) WHERE device.type = 'nwendpoint'"

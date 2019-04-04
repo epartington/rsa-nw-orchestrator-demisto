@@ -1,0 +1,2 @@
+!ad-search filter=(&(objectClass=user)(name=eric)
+!ad-search filter=(objectClass=user)
