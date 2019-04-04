@@ -1,0 +1,32 @@
+commonfields:
+  id: 3a9e18ad-b563-43a9-8c00-9e9ce854a9c9
+  version: 67
+name: netwitness-multi-concentrator-session-query
+script: |
+  #defaultQuery is "select * where sessionid ="
+  #major props to Sean Ennis for helping with this automation
+  #
+  cIPs = demisto.args()['concIPs']
+  sIDs = demisto.args()['sessionIDs']
+  #dQuery = demisto.args()['defaultQuery']
+  dQuery = 'select * where sessionid='
+
+  for i in range(len(cIPs)):
+      resp = demisto.executeCommand("netwitness-query", {'concentratorIP': cIPs[i], 'concentratorPort':'50105', 'query': dQuery + sIDs[i]})
+      demisto.results(resp)
+type: python
+tags:
+- RSA NetWitness Packets & Logs
+enabled: true
+args:
+- name: concIPs
+  required: true
+  description: array of concentrator IPs
+  isArray: true
+- name: sessionIDs
+  required: true
+  description: array of sessionID values
+  isArray: true
+scripttarget: 0
+timeout: 180ns
+runonce: false
